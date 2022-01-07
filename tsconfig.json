@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": false,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "Node",
+    "paths": {
+      "@app/constants": ["src/common/constants/constants"],
+      "@app/enums": ["src/common/constants/enums"],
+      "@app/errorCodes": ["src/common/constants/error_codes"],
+      "@app/successCodes": ["src/common/constants/success_codes"],
+      "@app/models/pg": ["src/database/pg/models/index.model"],
+      "@app/services": ["src/common/services/index.service"],
+      "@app/interfaces": ["src/common/interfaces/index.interface"],
+      "@app/exceptions": ["src/common/exceptions/index.exception"],
+      "@app/dto": ["src/common/dto/index.dto"],
+      "@app/helpers/*": ["src/common/helpers/*"],
+      "@app/exceptions/*": ["src/common/exceptions/*"],
+      "@app/middlewares/*": ["src/common/middleware/*"],
+      "@app/decorators": ["src/common/decorators/index.decorator"],
+      "@app/interceptors": ["src/common/interceptors/index.interceptor"],
+      "@app/guards": ["src/common/guards/index.guard"],
+      "@app/filters": ["src/common/filters/index.filter"],
+      "@app/providers": ["src/providers/index.provider"],
+      "@app/models/mongo": ["src/database/mongo/schemas/index.schema"]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+[
+    {
+        "is_app_maintenance": false,
+        "app_maintenance_message": "Maaf, sistem sedang dalam perbaikan",
+        "cms_expiry": "1;w",
+        "app_expiry": "20;m",
+        "terms_and_conditions": "test",
+        "limit_balance_billfazz": 500000,
+        "limit_balance_aviana": 500000
+    }
+]

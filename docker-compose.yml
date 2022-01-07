@@ -1,0 +1,72 @@
+version: '3.7'
+
+networks:
+  devnet:
+    external:
+      name: development
+
+services:
+  boilerplate-dev:
+    build:
+      context: ./dist/
+    container_name: boilerplate-dev
+    environment:
+      - NODE_ENV=development
+      - PORT=15555
+      - API_VERSION=1
+      - API_VERSION_PREFIX=v
+      - JWT_SECRET=123123
+
+      - POSTGRES_HOST=localhost
+      - POSTGRES_PORT=5432
+      - POSTGRES_USERNAME=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=boilerplate
+      - POSTGRES_TEST_DB=boilerplate-test
+      - POSTGRES_SSL=false
+      - POSTGRES_CERT_CA=somethinghere
+
+      - SENTRY_URL=your sentry url
+      - SENTRY_ENVIRONMENT=development
+
+      - FLUENTD_URL=localhost
+      - FLUENTD_PORT=8888
+      - FLUENTD_DB=mongo.boilerplate-dev
+
+      - ASSETS_ORIGINAL_PATH=./public/uploads/original
+
+      - BUCKET_HOST=localhost
+      - BUCKET_SECRET=123123
+
+      - EMAIL=boilerplate@no-reply.com
+      - SMTP_HOST=host
+      - SMTP_PORT=587
+      - SMTP_USERNAME=smtp@example.com
+      - SMTP_KEY=
+
+      - RABBITMQ_USER=guest
+      - RABBITMQ_PASSWORD=guest
+      - RABBITMQ_HOST=localhost:5672
+
+      - REDIS_HOST=localhost
+      - REDIS_PORT=6379
+      - REDIS_TTL=300
+
+    networks:
+      - devnet
+    restart: unless-stopped
+
+  redis:
+    build: ./redis/script
+    container_name: boilerplate-redis
+    privileged: true
+    command: sh -c "./init.sh"
+    logging:
+      options:
+        max-size: "50m"
+        max-file: "3"
+    volumes:
+      - /srv/app/boilerplate/redis/data:/data:rw
+    networks:
+      - devnet
+    restart: unless-stopped
